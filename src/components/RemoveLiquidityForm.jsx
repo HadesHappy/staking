@@ -22,7 +22,7 @@ const RemoveLiquidityForm = ({ setIsModalVisible }) => {
 
   const handleUnstakeClick = async () => {
     try {
-      if (amount > 0 && amount <= data.displayValue) {
+      if (amount > 0 && amount <= stakedLp) {
         const response = await unstakeLp(amount)
         if (response.status === 'Success') {
           toast.success('Succeed.')
@@ -48,7 +48,7 @@ const RemoveLiquidityForm = ({ setIsModalVisible }) => {
       <div className='stake-window__form-wrapper'>
         <label htmlFor="unstake-input">LP-Token</label>
         <p>
-          Balance: <span>{showBalance(data?.displayValue)} LP</span>
+          Balance: <span>{data?.displayValue} LP</span>
         </p>
         <input type="number" placeholder='Enter an amount' id='unstake-input' value={amount} onChange={handleChange} />
       </div>
