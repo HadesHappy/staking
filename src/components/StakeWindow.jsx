@@ -57,7 +57,7 @@ const StakeWindow = ({ setIsModalVisible }) => {
   const handleConfirmClick = async () => {
     try {
       if (activeTab === 'Stake') {
-        if (amount > 0 && amount <= data.displayValue) {
+        if (amount > 0 && amount <= Number(data.displayValue)) {
           const response = await stakeLsd(amount)
           if (response.status === 'Success') {
             toast.success('Succeed.')
@@ -77,7 +77,7 @@ const StakeWindow = ({ setIsModalVisible }) => {
       } else {
         console.log('balance: ', data.displayValue)
         console.log('amount: ', amount)
-        if (amount > 0 && amount <= data.displayValue) {
+        if (amount > 0 && amount <= Number(data.displayValue)) {
           const response = await unstakeLsd(amount)
           if (response.status === 'Success') {
             toast.success('Succeed.')
