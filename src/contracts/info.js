@@ -79,7 +79,7 @@ const getPersonalInfo = async (address) => {
   try {
     // Get claim amount by LP
     const claimAmountByLP = formatLsd(await stakingContract.getClaimAmountByLP(address))
-
+    console.log('claim amount: ', claimAmountByLP)
     // Get claim amount by LSD
     const claimAmountByLSD = formatLsd(await stakingContract.getClaimAmountByLSD(address))
 

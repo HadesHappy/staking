@@ -8,6 +8,7 @@ const StakeTabs = ({ currentHeadTab, setIsModalVisible, setCurrentModal }) => {
   const { bonusApr, stakeApr, totalStakedLp, totalStakedLsd, totalRewardsByLP, totalRewardsByLSD } = useStakeLsdInfo()
   const { claimAmountByLp, claimAmountByLsd, earnedAmountByLp, earnedAmountByLsd, stakedLp, stakedLsd } = usePersonalInfo()
 
+  console.log('by lp: ', claimAmountByLp)
   let leftData = {
     img: ['img/coins/lseth.png'],
     coinName: 'LSD',
