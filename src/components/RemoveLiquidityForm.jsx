@@ -1,13 +1,11 @@
 import React, { useState } from 'react'
-import { useBalance, useAddress } from '@thirdweb-dev/react'
-import { showBalance } from '../utils/helper'
+import { useBalance } from '@thirdweb-dev/react'
 import { unstakeLp } from '../contracts/stake'
 import { usePersonalInfo } from '../hooks/usePersonalInfo'
 import { pairTokenAddress } from '../utils/constants'
 import { toast } from 'react-hot-toast'
 
 const RemoveLiquidityForm = ({ setIsModalVisible }) => {
-  const address = useAddress()
   const { data } = useBalance(pairTokenAddress)
   const [amount, setAmount] = useState()
   const { stakedLp } = usePersonalInfo()

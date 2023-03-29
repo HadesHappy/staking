@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { lsdTokenAddress, veLsdTokenAddress } from '../utils/constants'
 import { useBalance, useAddress } from '@thirdweb-dev/react'
-import { showBalance } from '../utils/helper'
+import { showBalance, formatLsd } from '../utils/helper'
 import { usePrice } from '../hooks/usePrice'
 import { stakeLsd, unstakeLsd } from '../contracts/stake'
 import { getAllowance, approveLsd } from '../contracts/approve'
@@ -18,7 +18,7 @@ const StakeWindow = ({ setIsModalVisible }) => {
   const getTokenAllowance = async () => {
     try {
       const { allowanceLsd } = await getAllowance(address)
-      if (allowanceLsd < amount)
+      if (allowanceLsd < formatLsd(amount))
         setIsApproved(false)
       else
         setIsApproved(true)

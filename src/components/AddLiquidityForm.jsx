@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { useAddress, useBalance } from '@thirdweb-dev/react'
-import { showBalance } from '../utils/helper'
 import { pairTokenAddress } from '../utils/constants'
 import { stakeLp } from '../contracts/stake'
 import { approveLp, getAllowance } from '../contracts/approve'
 import { toast } from 'react-hot-toast'
+import { formatEther } from '../utils/helper'
 
 const AddLiquidityForm = ({ setIsModalVisible }) => {
   const [amount, setAmount] = useState()
@@ -15,7 +15,7 @@ const AddLiquidityForm = ({ setIsModalVisible }) => {
   const getTokenAllowance = async () => {
     try {
       const { allowanceLp } = await getAllowance(address)
-      if (allowanceLp < amount)
+      if (allowanceLp < formatEther(amount))
         setIsApproved(false)
       else
         setIsApproved(true)
@@ -82,7 +82,7 @@ const AddLiquidityForm = ({ setIsModalVisible }) => {
       <div className='stake-window__form-wrapper'>
         <label htmlFor="stake-eth-input">Stake</label>
         <p>
-          Balance: <span>{showBalance(data?.displayValue)} LP</span>
+          Balance: <span>{data?.displayValue} LP</span>
         </p>
         <input type="number" placeholder='Enter an amount' id='stake-eth-input' value={amount} onChange={handleChange} />
       </div>

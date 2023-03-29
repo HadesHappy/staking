@@ -1,10 +1,46 @@
 import React from 'react'
 import { useAddress } from '@thirdweb-dev/react'
 import { toast } from 'react-hot-toast'
+import { claimByLp, claimByLsd } from '../contracts/stake'
 
 const StakeBlock = ({ data, setIsModalVisible, setCurrentWindow }) => {
   const address = useAddress()
+  const handleClaimClick = async () => {
+    if (address) {
+      if (data.yourStakedBtn === 'Stake') {
+        if (data.lsdEarned === 0) {
+          toast.error('There is no LSD to claim.')
+        } else {
+          const response = await claimByLsd()
+          if (response.status === 'Success') {
+            toast.success('Succeed.')
+          } else {
+            if (response.status === 'Error')
+              toast.error(`${response.status}: ${response.error}.`)
+            else
+              toast.error('Transaction failed by unknown reason.')
+          }
+        }
+      } else {
+        if (data.lsdEarned === 0) {
+          toast.error('There is no LSD to claim.')
+        } else {
+          const response = await claimByLp()
+          if (response.status === 'Success') {
+            toast.success('Succeed.')
+          } else {
+            if (response.status === 'Error')
+              toast.error(`${response.status}: ${response.error}.`)
+            else
+              toast.error('Transaction failed by unknown reason.')
+          }
+        }
+      }
+    }else{
+      toast.error('Connect your wallet.')
+    }
 
+  }
   return (
     <div className='stake-block'>
       <span className='stake-block__coin'>
@@ -67,7 +103,7 @@ const StakeBlock = ({ data, setIsModalVisible, setCurrentWindow }) => {
             <span>LSD Earned</span>
           </p>
           <b>{data.lsdEarned}</b>
-          <button className='turquoise'>Claim</button>
+          <button type='button' className='turquoise' onClick={handleClaimClick}>Claim</button>
         </li>
       </ul>
       <ul className='stake-block__info'>
