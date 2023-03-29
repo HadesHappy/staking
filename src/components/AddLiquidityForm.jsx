@@ -29,7 +29,7 @@ const AddLiquidityForm = ({ setIsModalVisible }) => {
       const response = await approveLp(amount)
       if (response.status === 'Success') {
         toast.success('Succeed.')
-        getTokenAllowance()
+        setIsApproved(true)
       } else {
         if (response.status === 'Error')
           toast.error(`${response.status}: ${response.error}.`)
@@ -48,6 +48,7 @@ const AddLiquidityForm = ({ setIsModalVisible }) => {
         const response = await stakeLp(amount)
         if (response.status === 'Success') {
           toast.success('Succeed.')
+          setIsModalVisible(false)
         } else {
           if (response.status === 'Error')
             toast.error(`${response.status}: ${response.error}.`)

@@ -24,6 +24,7 @@ const RemoveLiquidityForm = ({ setIsModalVisible }) => {
         const response = await unstakeLp(amount)
         if (response.status === 'Success') {
           toast.success('Succeed.')
+          setIsModalVisible(false)
         } else {
           if (response.status === 'Error')
             toast.error(`${response.status}: ${response.error}.`)

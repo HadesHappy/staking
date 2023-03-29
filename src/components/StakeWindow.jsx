@@ -48,7 +48,6 @@ const StakeWindow = ({ setIsModalVisible }) => {
         else
           toast.error('Transaction failed by unknown reason.')
       }
-      getTokenAllowance()
     } catch (error) {
       console.log(error)
       getTokenAllowance()
@@ -62,6 +61,7 @@ const StakeWindow = ({ setIsModalVisible }) => {
           const response = await stakeLsd(amount)
           if (response.status === 'Success') {
             toast.success('Succeed.')
+            setIsModalVisible(false)
           } else {
             if (response.status === 'Error')
               toast.error(`${response.status}: ${response.error}.`)
@@ -94,6 +94,7 @@ const StakeWindow = ({ setIsModalVisible }) => {
       }
     } catch (error) {
       console.log(error)
+      toast.error('Error: Unknown error occured.')
     }
   }
 
@@ -141,7 +142,7 @@ const StakeWindow = ({ setIsModalVisible }) => {
           <footer className='stake-window__footer'>
             <button type='button' className='gray' onClick={() => setIsModalVisible(false)}>Cancel</button>
             {
-              isApproved ?
+              (isApproved && activeTab === 'Stake') || activeTab === 'Unstake' ?
                 <button type='button' className='stake-window__footer-confirm purple' onClick={handleConfirmClick}>Confirm</button>
                 :
                 <button type='button' className='stake-window__footer-confirm purple' onClick={handleApproveClick}>Approve</button>
