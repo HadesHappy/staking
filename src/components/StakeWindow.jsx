@@ -75,6 +75,8 @@ const StakeWindow = ({ setIsModalVisible }) => {
             toast.error('Error: Insufficient Balance')
         }
       } else {
+        console.log('balance: ', data.displayValue)
+        console.log('amount: ', amount)
         if (amount > 0 && amount <= data.displayValue) {
           const response = await unstakeLsd(amount)
           if (response.status === 'Success') {
