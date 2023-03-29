@@ -41,6 +41,7 @@ const StakeWindow = ({ setIsModalVisible }) => {
       const response = await approveLsd(amount)
       if (response.status === 'Success') {
         toast.success('Succeed.')
+        setIsApproved(true)
       } else {
         if (response.status === 'Error')
           toast.error(`${response.status}: ${response.error}.`)

@@ -12,6 +12,7 @@ const stakeLsd = async (amount) => {
   try {
     const signer = getSigner()
     const stakingContract = new ethers.Contract(staking.address, staking.abi, signer)
+    console.log('amount: ', parseLsd(amount))
     const tx1 = await stakingContract.stakeLSD(parseLsd(amount))
     const receipt = await tx1.wait()
 
