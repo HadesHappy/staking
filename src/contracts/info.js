@@ -88,7 +88,7 @@ const getPersonalInfo = async (address) => {
 
     // Get earned amount by LSD
     const earnedByLSD = formatLsd(await stakingContract.getEarnedByLSD(address))
-
+  
     // Get staked LP
     const stakedLP = formatEther(await stakingContract.getStakedLP(address))
 

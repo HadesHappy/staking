@@ -2,6 +2,7 @@ import React from 'react'
 import { useAddress } from '@thirdweb-dev/react'
 import { toast } from 'react-hot-toast'
 import { claimByLp, claimByLsd } from '../contracts/stake'
+import { showBalance } from '../utils/helper'
 
 const StakeBlock = ({ data, setIsModalVisible, setCurrentWindow }) => {
   const address = useAddress()
@@ -36,7 +37,7 @@ const StakeBlock = ({ data, setIsModalVisible, setCurrentWindow }) => {
           }
         }
       }
-    }else{
+    } else {
       toast.error('Connect your wallet.')
     }
 
@@ -66,7 +67,7 @@ const StakeBlock = ({ data, setIsModalVisible, setCurrentWindow }) => {
         </li>
         <li className='stake-block__total-item'>
           <span>Total Rewards LSD</span>
-          <b>{data.totalRewards}</b>
+          <b>{showBalance(data.totalRewards)}</b>
         </li>
       </ul>
       <ul className='stake-block__your'>
@@ -114,7 +115,7 @@ const StakeBlock = ({ data, setIsModalVisible, setCurrentWindow }) => {
             </svg>
             Your LSD earning
           </span>
-          <b>{data.footer.earning}</b>
+          <b>{showBalance(data.footer.earning)}</b>
         </li>
         <li className='stake-block__info-item'>
           <span>

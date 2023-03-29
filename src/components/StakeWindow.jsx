@@ -75,8 +75,6 @@ const StakeWindow = ({ setIsModalVisible }) => {
             toast.error('Error: Insufficient Balance')
         }
       } else {
-        console.log('balance: ', data.displayValue)
-        console.log('amount: ', amount)
         if (amount > 0 && amount <= Number(data.displayValue)) {
           const response = await unstakeLsd(amount)
           if (response.status === 'Success') {
@@ -96,7 +94,7 @@ const StakeWindow = ({ setIsModalVisible }) => {
       }
     } catch (error) {
       console.log(error)
-      toast.error('Error: Unknown error occured.')
+      toast.error('Error: Transaction reverted or Unknown error occured.')
     }
   }
 

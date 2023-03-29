@@ -44,7 +44,7 @@ const AddLiquidityForm = ({ setIsModalVisible }) => {
 
   const handleConfirmClick = async () => {
     try {
-      if (amount > 0 && amount <= data.displayValue) {
+      if (amount > 0 && amount <= Number(data.displayValue)) {
         const response = await stakeLp(amount)
         if (response.status === 'Success') {
           toast.success('Succeed.')
@@ -63,6 +63,7 @@ const AddLiquidityForm = ({ setIsModalVisible }) => {
       }
     } catch (error) {
       console.log(error)
+      toast.error('Error: Transaction reverted or unknown error occured.')
     }
   }
 

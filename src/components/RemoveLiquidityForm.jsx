@@ -40,6 +40,7 @@ const RemoveLiquidityForm = ({ setIsModalVisible }) => {
       }
     } catch (error) {
       console.log(error)
+      toast.error('Error: Transaction reverted or unknown error occured.')
     }
   }
   return (
