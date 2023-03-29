@@ -17,7 +17,7 @@ const StakeTabs = ({ currentHeadTab, setIsModalVisible, setCurrentModal }) => {
     totalRewards: totalRewardsByLSD || 0,
     yourStakedAmount: stakedLsd,
     yourStakedBtn: 'Stake',
-    lsdEarned: claimAmountByLp,
+    lsdEarned: claimAmountByLsd,
     footer: {
       earning: `${earnedAmountByLsd}`,
       bonus: `${bonusApr}%`,
@@ -33,7 +33,7 @@ const StakeTabs = ({ currentHeadTab, setIsModalVisible, setCurrentModal }) => {
     totalRewards: totalRewardsByLP || 0,
     yourStakedAmount: stakedLp,
     yourStakedBtn: 'Stake LP',
-    lsdEarned: claimAmountByLsd,
+    lsdEarned: claimAmountByLp,
     footer: {
       earning: `${earnedAmountByLp}`,
       bonus: `${bonusApr}%`,
